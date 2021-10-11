@@ -11,14 +11,21 @@ public class Solution77 {
     }
 
     public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> allcombinations = combineLesstThanK(n, k);
+        
+        allcombinations.removeIf(combination -> combination.size() != k);
+        return allcombinations;
+    }
+
+    public List<List<Integer>> combineLesstThanK(int n, int k) {
 		List<List<Integer>> combinations = new LinkedList<>();
 
-		if(n == 0 || k==0 || n < k) {
+		if(n == 0 || k==0 ) {
 			combinations.add(new LinkedList<Integer>());
 			return combinations;
 		}
 
-		List<List<Integer>> combinationsWithoutN = combine(n-1, k);
+		List<List<Integer>> combinationsWithoutN = combineLesstThanK(n-1, k);
 		for(List<Integer> combinationWithoutN: combinationsWithoutN ) {
             if(combinationWithoutN.size() < k) {
                 LinkedList<Integer> combinationWithN = new LinkedList<>(combinationWithoutN);
@@ -29,7 +36,6 @@ public class Solution77 {
                 combinations.add(combinationWithoutN);
             }
 		}
-		// combinations.addAll(combinationsWithoutN);
 		return combinations;
 		
 	}
