@@ -25,7 +25,7 @@ public class Solution46 {
 		int n = nums[end];
 		for(List<Integer> permutation: permutationsWithoutN ) {
 			for(int i=0; i<= permutation.size(); i++) {
-				List<Integer> permutationWithN = new LinkedList(permutation);
+				LinkedList<Integer> permutationWithN = new LinkedList<Integer>(permutation);
 				permutationWithN.add(i, n);
 				permutations.add(permutationWithN);
 			}
